@@ -1,6 +1,7 @@
 from datetime import datetime
-
+# function to check credit
 def check_credit(score):
+    # match statement to check ranges of credit
     match score:
         case s if 300 <= s <= 579:
             return "Poor"
@@ -16,13 +17,16 @@ def check_credit(score):
             return "Invalid score"
 
 def main():
+    # get user input
     credit = input('Credit score:\n')
+    # try block to make score an interger
     try:
         score = int(credit)
+    # if not a number throw an error
     except ValueError:
         print("Invalid input. Please enter a number.")
         return
-
+    # Get category
     category = check_credit(score)
     print(f'Your credit is {score}, in the category {category}')
 
