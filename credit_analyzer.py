@@ -1,7 +1,7 @@
 from datetime import datetime
-# function to check credit
+
+# Classify the credit score based on FICO ranges
 def check_credit(score):
-    # match statement to check ranges of credit
     match score:
         case s if 300 <= s <= 579:
             return "Poor"
@@ -17,22 +17,25 @@ def check_credit(score):
             return "Invalid score"
 
 def main():
-    # get user input
-    credit = input('Credit score:\n')
-    # try block to make score an interger
+    # Prompt user for credit score input
+    credit = input("Credit score:\n")
+
+    # Attempt to convert input to an integer
     try:
         score = int(credit)
-    # if not a number throw an error
     except ValueError:
         print("Invalid input. Please enter a number.")
         return
-    # Get category
-    category = check_credit(score)
-    print(f'Your credit is {score}, in the category {category}')
 
-    # Log the result
+    # Get credit score category
+    category = check_credit(score)
+    print(f"Your credit is {score}, in the category {category}")
+
+    # Log the result to a file with timestamp
     with open("log.txt", "a") as log:
-        log.write(f"User input: {score} – Result: {category} – Time: {datetime.now().strftime('%Y-%m-%d %I:%M %p')}\n")
+        log.write(
+            f"User input: {score} – Result: {category} – Time: {datetime.now().strftime('%Y-%m-%d %I:%M %p')}\n"
+        )
 
 if __name__ == "__main__":
     main()
